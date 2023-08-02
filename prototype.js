@@ -2,27 +2,20 @@
 
 const log = console.log
 
-let user = {
-    name: "John",
-    surname: "Smith",
-
-    set fullName(value) {
-        [this.name, this.surname] = value.split(" ");
+let animal = {
+    walk() {
+        if (!this.isSleeping) {
+            log(`동물이 걸어갑니다`)
+        }
     },
-
-    get fullName() {
-        return `${this.name} ${this.surname}`
+    sleep() {
+        this.isSleeping = true
     }
 }
 
-let admin = {
-    __proto__: user,
-    isAdmin: true
+let rabbit = {
+    name: "하얀 토끼",
+    __proto__: animal
 }
 
-log(admin.fullName)
-
-admin.fullName = "Alice Cooper"
-
-log(admin.fullName)
-log(user.fullName)
+console.dir(rabbit)
