@@ -1,16 +1,28 @@
-function Ultra() {}
-Ultra.prototype.ultraProp = true;
+'use strict';
 
-function Super() {}
-Super.prototype = new Ultra();
+const log = console.log
 
-function Sub() {}
-Sub.prototype = new Super();
-Sub.prototype.ultraProp = 2
+let user = {
+    name: "John",
+    surname: "Smith",
 
-const o = new Sub();
-console.log(o.ultraProp)
+    set fullName(value) {
+        [this.name, this.surname] = value.split(" ");
+    },
 
-console.log(Sub.prototype)
-console.log(Super.prototype)
-console.log(Ultra.prototype)
+    get fullName() {
+        return `${this.name} ${this.surname}`
+    }
+}
+
+let admin = {
+    __proto__: user,
+    isAdmin: true
+}
+
+log(admin.fullName)
+
+admin.fullName = "Alice Cooper"
+
+log(admin.fullName)
+log(user.fullName)
